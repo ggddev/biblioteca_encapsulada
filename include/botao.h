@@ -13,6 +13,8 @@ private:
     uint32_t _ultimaMudancaMs = 0;
     uint32_t _tempoDebounceMs = 20;
     bool _estadoUltimaAcao = HIGH;
+    
+    uint32_t tempoDecorrido();
 
 public: 
     Botao(uint8_t pinoBotao);

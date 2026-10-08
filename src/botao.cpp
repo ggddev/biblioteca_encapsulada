@@ -1,5 +1,4 @@
 #include "botao.h"
-#include "led.h"
 
 Botao::Botao(uint8_t pino) : _pinoBotao(pino){}
 
@@ -18,7 +17,7 @@ void Botao::atualizar(){
         _estadoBotaoAnterior = _estadoBotaoAtual;
         _ultimaMudancaMs = millis();
     
-    } else if(millis() - _ultimaMudancaMs > _tempoDebounceMs){
+    } else if(tempoDecorrido() > _tempoDebounceMs){
 
 //! se a ação não for executada é pq _estadoUltimaAcao e _estadoBotaoAtual não são iguais
 //TODO se for executada o _estadoUltimaAcao e _estadoBotaoAtual são iguais, logo será executado
@@ -45,4 +44,8 @@ bool Botao::pressionou(){
 
 bool Botao::soltou(){
     return _soltou;
+}
+
+uint32_t Botao::tempoDecorrido(){
+    return millis()- _ultimaMudancaMs;
 }

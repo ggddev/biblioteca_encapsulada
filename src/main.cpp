@@ -2,29 +2,21 @@
 #include "led.h"
 #include "botao.h"
 
-Led ledVermelho(17);
-Led ledAmarelo(16);
-Led ledVerde(15);
+Led ledRed(15);
+Botao botao(0);
 
-Botao btnTempo(10);
-
-void setup() {
-  ledVermelho.iniciar();
-  ledVermelho.ativarPiscar();
-
-  ledAmarelo.iniciar();
-  ledAmarelo.ativarPiscar(1000);
-
-  ledVerde.iniciar();
-  ledVerde.ativarPiscar(2000);
-
-  btnTempo.iniciar();
+void setup(){
+  Serial.begin(9600);
+  botao.iniciar();
+  ledRed.iniciar();
 }
 
-void loop() {
-  ledVermelho.atualizar();
-  ledAmarelo.atualizar();
-  ledVerde.atualizar();
+void loop(){
+  botao.atualizar();
+  ledRed.atualizar();
 
-  btnTempo.atualizar();
+  if(botao.pressionou()){
+    ledRed.ligar();
+  }
+
 }
